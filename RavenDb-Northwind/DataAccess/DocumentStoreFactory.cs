@@ -14,8 +14,8 @@ namespace RavenDb_Northwind.DataAccess
 
             Store = new DocumentStore
             {
-                Urls = new string[] { settings.Url },
-                Database = settings.DefaultDatabase
+                Urls = new string[] { settings.Url  ?? "http://localhost:8080" },
+                Database = settings.DefaultDatabase ?? "northwind"
             }.Initialize();
         }
     }
