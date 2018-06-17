@@ -27,7 +27,16 @@ namespace RavenDb_Northwind
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
             services.AddMvc();
+            
             services.AddOptions();
             services.Configure<RavenSettings>(Configuration.GetSection("Raven"));
 
@@ -43,6 +52,7 @@ namespace RavenDb_Northwind
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseMvc();
 
             Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
