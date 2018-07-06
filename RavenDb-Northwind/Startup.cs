@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using RavenDb_Northwind.DataAccess;
 using RavenDb_Northwind.Domain;
 using RavenDb_Northwind.Dtos;
+using RavenDbNorthwind.Dtos;
 
 namespace RavenDb_Northwind
 {
@@ -56,6 +57,8 @@ namespace RavenDb_Northwind
             app.UseMvc();
 
             Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
+            Mapper.Initialize(cfg => cfg.CreateMap<Supplier, SupplierDto>());
+
         }
     }
 }
