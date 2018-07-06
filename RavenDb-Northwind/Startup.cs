@@ -56,8 +56,11 @@ namespace RavenDb_Northwind
             app.UseCors("CorsPolicy");
             app.UseMvc();
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Category, CategoryDto>());
-            Mapper.Initialize(cfg => cfg.CreateMap<Supplier, SupplierDto>());
+            Mapper.Initialize(cfg => 
+            {
+                cfg.CreateMap<Category, CategoryDto>();
+                cfg.CreateMap<Supplier, SupplierDto>();
+            });
 
         }
     }
